@@ -1,6 +1,6 @@
-# 🇧🇷 Comex Brasil 2011–2021
+# 🇧🇷 Análise Exploratória e Visual do Comércio Exterior Brasileiro (2011–2021)
 
-> Dashboard analítico interativo do comércio exterior brasileiro
+> Projeto Integrador Aplicado em CD & IA - I — IESB
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.36+-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)
@@ -24,7 +24,7 @@
 
 ## 📋 Sobre o Projeto
 
-Painel analítico desenvolvido como **Projeto Integrador** para análise de **30,7 milhões de operações** de comércio exterior do Brasil entre 2011 e 2021. O projeto cobre o pipeline completo de Engenharia de Dados: ingestão, ETL, modelagem dimensional (Star Schema), otimização OLAP com DuckDB e visualização interativa com Streamlit + Plotly.
+**Análise Exploratória e Visual do Comércio Exterior Brasileiro (2011–2021)** é um painel analítico desenvolvido como **Projeto Integrador** para análise de **30,7 milhões de operações** de comércio exterior do Brasil entre 2011 e 2021. O projeto cobre o pipeline completo de Engenharia de Dados: ingestão, ETL, modelagem dimensional (Star Schema), otimização OLAP com DuckDB e visualização interativa com Streamlit + Plotly.
 
 **Instituição:** IESB  
 **Curso:** Ciência de Dados e Inteligência Artificial  
