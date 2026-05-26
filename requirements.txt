@@ -1,0 +1,8 @@
+# Dashboard — dependências principais
+streamlit>=1.36.0
+duckdb>=0.10.0
+plotly>=5.18.0
+pandas>=2.0.0
+
+# ETL
+tqdm>=4.65.0

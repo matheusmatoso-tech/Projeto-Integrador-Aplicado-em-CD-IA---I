@@ -1,0 +1,40 @@
+# Dados (muito grandes para versionar)
+dados_brutos/
+dados_limpos/
+dashboard/dados.duckdb
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+.conda/
+
+# Streamlit
+dashboard/.streamlit/
+
+# Screenshots (artefatos de CI — opcional manter no repo)
+# dashboard/screenshots/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+.claude/
