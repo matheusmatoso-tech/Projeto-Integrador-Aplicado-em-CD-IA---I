@@ -2,7 +2,7 @@
 import streamlit as st
 from config import COLORS
 
-st.markdown("## 🏠 Comex Brasil 2011–2021")
+st.markdown("## 🏠 Analise Exploratoria e Visual do Comercio Exterior Brasileiro (2011-2021)")
 st.markdown(
     f"<p style='color:{COLORS['text_sec']};font-size:1.1rem;margin-top:-10px'>"
     "Análise interativa do comércio exterior brasileiro"

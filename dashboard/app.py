@@ -6,7 +6,11 @@ Define page config, CSS global e navegação multi-página.
 import streamlit as st
 from config import PAGE_CONFIG, COLORS
 
-st.set_page_config(**PAGE_CONFIG)
+st.set_page_config(**{
+    **PAGE_CONFIG,
+    "page_title": "Analise Exploratoria e Visual do Comercio Exterior Brasileiro",
+    "page_icon":  "🇧🇷",
+})
 
 # ── CSS global ─────────────────────────────────────────────────────────────────
 # Ajustes finos sobre o tema dark do Streamlit
