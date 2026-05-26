@@ -11,6 +11,17 @@
 
 ---
 
+## 🚀 Demo ao Vivo
+
+[![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-yellow)](https://matheus-matoso-tech-comex-brasil-2011-2021.hf.space)
+
+**Dashboard interativo:** https://matheus-matoso-tech-comex-brasil-2011-2021.hf.space
+
+> Hospedado no Hugging Face Spaces (CPU Basic, gratuito).  
+> O cold start pode levar até 30 segundos após período de inatividade.
+
+---
+
 ## 📋 Sobre o Projeto
 
 Painel analítico desenvolvido como **Projeto Integrador** para análise de **30,7 milhões de operações** de comércio exterior do Brasil entre 2011 e 2021. O projeto cobre o pipeline completo de Engenharia de Dados: ingestão, ETL, modelagem dimensional (Star Schema), otimização OLAP com DuckDB e visualização interativa com Streamlit + Plotly.
@@ -152,6 +163,8 @@ projeto_integrador/
 | 📅 **Análise Temporal** | Série mensal MM3, YoY anual, YTD acumulado, heatmap de sazonalidade |
 | 🗺️ **Análise Geográfica** | Choropleth mundial, top 10 países, distribuição por região brasileira, ranking UFs |
 | 📦 **Produtos & Logística** | Top 15 NCMs, distribuição por modal, scatter valor×peso, ranking URFs |
+
+> 📸 Screenshots disponíveis em `dashboard/screenshots/`
 
 ---
 
