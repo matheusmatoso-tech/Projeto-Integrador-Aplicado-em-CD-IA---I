@@ -419,16 +419,13 @@ def get_top_parceiro(
     con     = get_connection()
     where_t = _where(anos, (tipo,), paises, ufs)
     row     = con.execute(f"""
-        WITH total AS (
-            SELECT SUM(VL_FOB) AS total_geral FROM fOperacao f {where_t}
-        )
-        SELECT p.NO_PAIS, SUM(f.VL_FOB) AS valor,
-            SUM(f.VL_FOB) * 100.0 / t.total_geral AS pct
+        SELECT p.NO_PAIS,
+               SUM(f.VL_FOB) AS valor,
+               SUM(f.VL_FOB) * 100.0 / SUM(SUM(f.VL_FOB)) OVER () AS pct
         FROM fOperacao f
         JOIN dPais p ON f.CO_PAIS = p.CO_PAIS
-        CROSS JOIN total t
         {where_t}
-        GROUP BY p.NO_PAIS, t.total_geral
+        GROUP BY p.NO_PAIS
         ORDER BY valor DESC
         LIMIT 1
     """).fetchone()
@@ -639,16 +636,13 @@ def get_produto_top(
     con     = get_connection()
     where_t = _where(anos, (tipo,), paises, ufs)
     row     = con.execute(f"""
-        WITH total AS (
-            SELECT SUM(VL_FOB) AS g FROM fOperacao f {where_t}
-        )
-        SELECT n.NO_NCM_POR, SUM(f.VL_FOB) AS valor,
-               SUM(f.VL_FOB) * 100.0 / t.g AS pct
+        SELECT n.NO_NCM_POR,
+               SUM(f.VL_FOB) AS valor,
+               SUM(f.VL_FOB) * 100.0 / SUM(SUM(f.VL_FOB)) OVER () AS pct
         FROM fOperacao f
         JOIN dNCM n ON f.CO_NCM = n.CO_NCM
-        CROSS JOIN total t
         {where_t}
-        GROUP BY n.NO_NCM_POR, t.g
+        GROUP BY n.NO_NCM_POR
         ORDER BY valor DESC
         LIMIT 1
     """).fetchone()
@@ -668,16 +662,13 @@ def get_modal_principal(
     con   = get_connection()
     where = _where(anos, tipos, paises, ufs)
     row   = con.execute(f"""
-        WITH total AS (
-            SELECT SUM(VL_FOB) AS g FROM fOperacao f {where}
-        )
-        SELECT v.NO_VIA, SUM(f.VL_FOB) AS valor,
-               SUM(f.VL_FOB) * 100.0 / t.g AS pct
+        SELECT v.NO_VIA,
+               SUM(f.VL_FOB) AS valor,
+               SUM(f.VL_FOB) * 100.0 / SUM(SUM(f.VL_FOB)) OVER () AS pct
         FROM fOperacao f
         JOIN dVia v ON f.CO_VIA = v.CO_VIA
-        CROSS JOIN total t
         {where}
-        GROUP BY v.NO_VIA, t.g
+        GROUP BY v.NO_VIA
         ORDER BY valor DESC
         LIMIT 1
     """).fetchone()
@@ -697,17 +688,13 @@ def get_urf_principal(
     con   = get_connection()
     where = _where(anos, tipos, paises, ufs)
     row   = con.execute(f"""
-        WITH total AS (
-            SELECT SUM(VL_FOB) AS g FROM fOperacao f {where}
-        )
         SELECT REGEXP_REPLACE(u.NO_URF, '^\\d+ - ', '') AS nome,
                SUM(f.VL_FOB) AS valor,
-               SUM(f.VL_FOB) * 100.0 / t.g AS pct
+               SUM(f.VL_FOB) * 100.0 / SUM(SUM(f.VL_FOB)) OVER () AS pct
         FROM fOperacao f
         JOIN dURF u ON f.CO_URF = u.CO_URF
-        CROSS JOIN total t
         {where}
-        GROUP BY u.NO_URF, t.g
+        GROUP BY u.NO_URF
         ORDER BY valor DESC
         LIMIT 1
     """).fetchone()
