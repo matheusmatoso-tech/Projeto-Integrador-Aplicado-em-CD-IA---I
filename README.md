@@ -26,6 +26,8 @@
 
 **Análise Exploratória e Visual do Comércio Exterior Brasileiro (2011–2021)** é um painel analítico desenvolvido como **Projeto Integrador** para análise de **30,7 milhões de operações** de comércio exterior do Brasil entre 2011 e 2021. O projeto cobre o pipeline completo de Engenharia de Dados: ingestão, ETL, modelagem dimensional (Star Schema), otimização OLAP com DuckDB e visualização interativa com Streamlit + Plotly.
 
+> **Pergunta de negócio:** *Como evoluiu a balança comercial brasileira entre 2011 e 2021? Quais são os principais parceiros comerciais, produtos e rotas logísticas do país?*
+
 **Instituição:** IESB  
 **Curso:** Ciência de Dados e Inteligência Artificial  
 **Disciplina:** Projeto Integrador Aplicado em CD & IA - I · 3º Semestre  
@@ -114,6 +116,10 @@ projeto_integrador/
 │   ├── assets/                 # Recursos estáticos
 │   └── screenshots/            # Vazio — screenshots adicionados manualmente
 │
+├── documents/
+│   ├── documentacao_tecnica_comex.pdf  # Documentação técnica completa
+│   ├── der-lógico.png          # DER Lógico Normalizado da base bruta
+│   └── starscheme.png          # Modelo Dimensional Star Schema
 ├── requirements.txt            # Dependências Python
 ├── .gitignore
 └── README.md
@@ -121,36 +127,21 @@ projeto_integrador/
 
 ---
 
-## 🗂️ Modelo Dimensional (Star Schema)
+## 🗂️ Modelagem de Dados
 
-```
-                    ┌─────────────┐
-                    │  dCalendario │
-                    │  CO_ANO      │
-                    │  CO_MES      │
-                    └──────┬──────┘
-                           │
- ┌──────────┐   ┌──────────┴──────────┐   ┌──────────┐
- │  dPais   │   │                     │   │   dNCM   │
- │ CO_PAIS  ├───┤     fOperacao        ├───┤  CO_NCM  │
- │ NO_PAIS  │   │   (30,7 M linhas)   │   │NO_NCM_POR│
- │ CO_ISO3  │   │                     │   └──────────┘
- └──────────┘   │  VL_FOB             │
-                │  KG_LIQUIDO         │   ┌──────────┐
- ┌──────────┐   │  TIPO_OPERACAO      ├───┤   dVia   │
- │   dURF   │   │                     │   │  CO_VIA  │
- │  CO_URF  ├───┤                     │   │  NO_VIA  │
- │  NO_URF  │   └──────────┬──────────┘   └──────────┘
- └──────────┘              │
-                    ┌──────┴──────┐
-                    │     dUF      │
-                    │   SG_UF      │
-                    │   NO_UF      │
-                    │  NO_REGIAO   │
-                    └─────────────┘
-```
+### Star Schema — Modelo Dimensional
 
-> Os diagramas DER Lógico Normalizado e Star Schema foram desenvolvidos como parte da documentação do projeto.
+![Star Schema](documents/starscheme.png)
+
+1 tabela fato (`fOperacao` — 30,7 M linhas) ligada a 7 dimensões: `dPais`, `dNCM`, `dVia`, `dURF`, `dUF`, `dCalendario`, `dUnidade`.
+
+### DER Lógico Normalizado — Base Bruta
+
+![DER Lógico](documents/der-lógico.png)
+
+Diagrama da estrutura original do Comex Stat (base bruta 1997–2021) antes do processo de ETL e modelagem dimensional.
+
+> 📄 Documentação técnica completa: [`documents/documentacao_tecnica_comex.pdf`](documents/documentacao_tecnica_comex.pdf)
 
 ---
 
